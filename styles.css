@@ -4,7 +4,7 @@ body {
 .nav-bar {
   background-color: #802B1A;
   width: 100%;
-  border: 1px solid green;
+  border: 1px solid black;
   float:left;
 }
 .nav-element {
@@ -13,7 +13,7 @@ body {
   width: 12%;
   border: 1px solid black;
   float: left;
-  margin: 60px;
+  margin: 70px;
   margin-top: 5px;
   margin-bottom: 5px;
 }
