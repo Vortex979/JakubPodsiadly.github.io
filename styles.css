@@ -10,11 +10,29 @@ body {
 .nav-element {
   color: black;
   text-align: center;
-  width: 15%; /*auto*/  */
+  width: 12%;
   border: 1px solid black;
   float: left;
-  margin: 45px;
+  margin: 60px;
   margin-top: 5px;
   margin-bottom: 5px;
-  padding: 0px;
+}
+
+.page-content{
+  float: left;
+  width: 100%;
+}
+
+.page-image{
+  float: left;
+  position:absolute;
+  top: 150px;
+  left: 50px;
+  width:100px;
+  height:100px;
+}
+
+.page-text{
+  float: left;
+  position:relative;
 }
