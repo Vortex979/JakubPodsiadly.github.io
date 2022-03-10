@@ -1,38 +1,37 @@
 body {
-  background-color: powderblue;
+    background-color: powderblue;
 }
 .nav-bar {
-  background-color: #802B1A;
-  width: 100%;
-  border: 1px solid black;
-  float:left;
+    background-color: #802B1A;
+    width: 100%;
+    border: 1px solid black;
+    float:left;
 }
 .nav-element {
-  color: black;
-  text-align: center;
-  width: 12%;
-  border: 1px solid black;
-  float: left;
-  margin: 70px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+    color: black;
+    text-align: center;
+    width: 12%;
+    border: 1px solid black;
+    float: left;
+    margin: 5px 70px;
 }
 
 .page-content{
-  float: left;
-  width: 100%;
+    float: left;
+    width: 100%;
 }
 
 .page-image{
-  float: left;
-  position:absolute;
-  top: 150px;
-  left: 50px;
-  width:100px;
-  height:100px;
+    float: left;
+    margin: 20px 50px;
 }
 
 .page-text{
-  float: left;
-  position:relative;
+    margin: 20px 50px;
+    text-align: justify;
+}
+
+.title{
+    text-align: center;
+    font-size: 46px;
 }
