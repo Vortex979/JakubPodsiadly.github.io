@@ -1,9 +1,10 @@
 body {
-    background-color: powderblue;
+    background-color: lightgray ;
 }
 .nav-bar {
-    background-color: #802B1A;
+    background-color: #edb13f;
     width: 100%;
+    /*height: 50px;*/
     border: 1px solid black;
     float:left;
 }
@@ -13,13 +14,15 @@ body {
     width: 12%;
     border: 1px solid black;
     float: left;
-    margin: 5px 70px;
-    border-radius: 6px;
+    margin: 10px 70px;
+    border-radius: 10px;
 }
 
 .nav-element-text{
     font-size: 20px;
-    font-weight: 800;
+    font-weight: 1000;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .page-content{
@@ -31,6 +34,7 @@ body {
 .page-image{
     float: left;
     margin: 20px 50px;
+    margin-top: 80px;
 }
 
 .page-text{
@@ -43,6 +47,8 @@ body {
     text-align: center;
     font-size: 60px;
     margin-top: 0px;
+    padding-top: 120px;
+    color: #283c5f;
 }
 
 h2{
