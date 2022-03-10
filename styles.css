@@ -14,11 +14,18 @@ body {
     border: 1px solid black;
     float: left;
     margin: 5px 70px;
+    border-radius: 6px;
+}
+
+.nav-element-text{
+    font-size: 20px;
+    font-weight: 800;
 }
 
 .page-content{
-    float: left;
-    width: 100%;
+    text-align: center;
+    width: 80%;
+    margin: 0px 10%;
 }
 
 .page-image{
@@ -32,6 +39,18 @@ body {
 }
 
 .title{
+    font-family: 'Hubballi', cursive;
     text-align: center;
-    font-size: 46px;
+    font-size: 60px;
+    margin-top: 0px;
+}
+
+h2{
+    font-family: 'Hubballi', cursive;
+    font-size: 40px;
+}
+
+p {
+    font-family: 'Hubballi', cursive;
+    font-size: 28px;
 }
