@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title> Strona Jakuba Podsiadłego </title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="shortcut icon" href="https://japodsiadly.github.io/J-letter.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
+
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class = "page">
+        <div class = "page-content">
+            <p class="title"> Kółko i krzyżyk </p>
+            <div class = "tic-tac-toe-game">
+                <div class = "tic-tac-toe-field" id = "tic-tac-toe-field-1" onclick="insert(this.id)">  </div>
+                <div class = "tic-tac-toe-field" id = "tic-tac-toe-field-2" onclick="insert(this.id)">  </div>
+                <div class = "tic-tac-toe-field" id = "tic-tac-toe-field-3" onclick="insert(this.id)">  </div>
+                <div class = "clear"> </div>
+
+                <div class = "tic-tac-toe-field" id = "tic-tac-toe-field-4" onclick="insert(this.id)">  </div>
+                <div class = "tic-tac-toe-field" id = "tic-tac-toe-field-5" onclick="insert(this.id)">  </div>
+                <div class = "tic-tac-toe-field" id = "tic-tac-toe-field-6" onclick="insert(this.id)">  </div>
+                <div class = "clear"> </div>
+
+                <div class = "tic-tac-toe-field" id = "tic-tac-toe-field-7" onclick="insert(this.id)">  </div>
+                <div class = "tic-tac-toe-field" id = "tic-tac-toe-field-8" onclick="insert(this.id)">  </div>
+                <div class = "tic-tac-toe-field" id = "tic-tac-toe-field-9" onclick="insert(this.id)">  </div>
+                <div class = "clear"> </div>
+            </div>
+
+            <button class="btn" onclick="preset()" > Wyczyść </button>
+
+            <div id="winner">  </div>
+        </div>
+    </div>
+</body>
+</html>
