@@ -1,1 +1,2 @@
-# vortex979.github.io
+# Strona Jakuba Podsiadłego 
+Stworzona podczas zajęć Programowanie w Sieci.
