@@ -12,6 +12,7 @@ let isSelected = {
 
 let imageToInsert = "X";
 let moves = 0;
+let won = false;
 
 function preset(){
     for(let i=1; i<10; i++){
@@ -32,6 +33,7 @@ function preset(){
 
     imageToInsert = "X";
     moves = 0;
+    won = false;
 
     document.getElementById("winner").innerText = "";
 }
@@ -51,8 +53,13 @@ function insert(fieldId){
         isSelected[fieldId] = "O";
     }
 
-    if (moves >= 5)
+    if (moves >= 5){
         winCheck();
+    }
+
+    if ((moves >= 9) && (!won)){
+        document.getElementById("winner").innerText = "Gra zaczończona remisem - nie wygrywa żaden z graczy";
+    }
 }
 
 function winCheck(){
@@ -88,4 +95,5 @@ function win(who){
     for (let i = 0; i < 10; i++) {
         isSelected["tic-tac-toe-field-" + i] = 1;
     }
+    won = true;
 }
