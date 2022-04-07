@@ -2,11 +2,21 @@ body {
     background-color: lightgray ;
 }
 
+.bg-dogs {
+    background-color: #edb13f;
+}
+
+.bg-dogs a {
+    color: #000000; !important;
+}
+
 .dogs img {
     width: 100%;
     height: auto;
+    margin-top: 20px;
 }
 .dogs figcaption {
-    margin-top: 16px;
+    margin-top: 10px;
     text-align: center;
 }
+
