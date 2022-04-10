@@ -53,6 +53,9 @@ body {
     font-size: 16px;
 }
 
-/*.other-dogs-image {*/
-/*    !*width: 100%;*!*/
-/*}*/
+.other-dogs-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
