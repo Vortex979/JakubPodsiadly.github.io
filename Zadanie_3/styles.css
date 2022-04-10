@@ -51,3 +51,9 @@ body {
     text-align: center;
     font-size: 16px;
 }
+
+.other-dogs-image {
+    border-radius: 26px;
+    width: 100%;
+
+}
