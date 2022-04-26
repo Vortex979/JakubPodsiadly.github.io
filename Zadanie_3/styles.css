@@ -2,6 +2,14 @@ body {
     background-color: lightgray ;
 }
 
+.page{
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
 .bg-dogs {
     background-color: #edb13f;
 }
