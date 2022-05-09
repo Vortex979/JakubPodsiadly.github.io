@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class IntegralCalculatorApplication {
+public class EquationCalculatorApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(IntegralCalculatorApplication.class, args);
+		SpringApplication.run(EquationCalculatorApplication.class, args);
 	}
 
 }
