@@ -1,4 +1,4 @@
-package japodsiadly.io.integral;
+package japodsiadly.io.equation;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

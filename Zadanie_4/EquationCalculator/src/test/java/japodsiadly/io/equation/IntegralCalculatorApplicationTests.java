@@ -1,4 +1,4 @@
-package japodsiadly.io.integral;
+package japodsiadly.io.equation;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
