@@ -8,5 +8,6 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 public class Equation {
-    private double[] equation;
+    private final double[] equation;
+    private final double x;
 }

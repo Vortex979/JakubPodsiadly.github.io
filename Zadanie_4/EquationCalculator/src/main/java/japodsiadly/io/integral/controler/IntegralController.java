@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 class IntegralController {
     private final EquationService equationService;
 
-    @GetMapping("/integral")
-    ResponseEntity<?> calculate(@RequestBody Equation equation){
+    @GetMapping("/equationSolver")
+    ResponseEntity<?> solve(@RequestBody Equation equation){
         return ResponseEntity.ok(equationService.calculateEquation(equation));
     }
 }
