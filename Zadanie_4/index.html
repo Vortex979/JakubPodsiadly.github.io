@@ -22,7 +22,8 @@
     <nav class="navbar navbar-light bg-dogs navbar-expand-md">
         <img class="navbar-brand d-inline-block mx-4" src="logo.png" width="34" height="50" alt="">
 
-        <button id="tooglebutton" class="navbar-toggler" type="button" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+        <button id="tooglebutton" class="navbar-toggler" type="button" aria-controls="menu" aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -200,10 +201,23 @@
 
     <div class="container page active" id="charts">
         <h1> Rysowanie wykresów funkcji wielomianowych: </h1>
+        <p> Podaj swoją funkcję: </p>
+
+        <div class="Xbuttons">
+            <button id="increaseX"> Zwiększ potęgę x</button>
+            <button id="decreaseX"> Zmniejsz potęgę x</button>
+        </div>
+
+        <p class="equation-static"> Y = </p>
+        <div class="equation">  </div>
+
+        <div style="clear: both"></div>
+        <button id="drawChart"> Narysuj wykres </button>
+
     </div>
 
     <div class="container page" id="git">
-    <h1> Link do mojego Gita: </h1>
+        <h1> Link do mojego Gita: </h1>
         <a href="https://github.com/japodsiadly">https://github.com/japodsiadly</a>
     </div>
 </main>

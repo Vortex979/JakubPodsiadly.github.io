@@ -60,3 +60,26 @@ body {
     text-align: center;
     font-size: 16px;
 }
+
+.Xbuttons{
+    float: right;
+}
+
+.equation-static{
+    float: left;
+    font-size: 30px;
+}
+
+.equation-coefficient{
+    float: left;
+    width: 50px;
+    height: 30px;
+    padding: 10px;
+    margin: 10px;
+}
+
+#drawChart{
+    /*float: left;*/
+    text-align: center;
+    justify-content: center;
+}
