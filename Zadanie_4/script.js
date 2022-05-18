@@ -39,45 +39,100 @@ navbarToggler.addEventListener('click', () => {
 let degree = 0;
 let equations = [];
 let coefficients = [];
-equations[0] = '<input class="equation-coefficient">';
+// equations[0] = '<input class="equation-coefficient">';
+// equations[0] = createInputField(0);
+
 
 const increaseXButton = document.querySelector('#increaseX');
 increaseXButton.addEventListener('click', () => {
-    let equation = document.querySelector('.equation')
+    let equation = document.querySelector('.equation');
+    const inputCoefficient = createInputField(degree);
 
-    // console.log("Incerase" + degree);
-    if (degree >= 11) {
+    if (degree >= 9) {
         return;
     }
-    if (degree === 0) {
-        equation.innerHTML = '<input class="equation-coefficient ' + "d" + degree + ' ">';
-    } else if (degree === 1) {
-        equation.innerHTML = '<input class="equation-coefficient ' + "d" + degree + ' ">' +
-            '<p class="equation-static"> X + </p>'
-            + equation.innerHTML;
-    } else {
-        equation.innerHTML = '<input class="equation-coefficient ' + "d" + degree + ' ">' +
-            '<p class="equation-static"> X^ ' + degree + ' + </p>'
-            + equation.innerHTML;
-    }
-    equations[degree] = equation.innerHTML
+
+    equation.appendChild(inputCoefficient);
+
+    let static = "";
+
+    // if (degree === 0) {
+    //     equation.innerHTML = inputCoefficient.innerHTML;
+    // } else if (degree === 1) {
+    //     equation.innerHTML = inputCoefficient.innerHTML + '<p class="equation-static"> X + </p>' + equation.innerHTML;
+    // } else {
+    //     equation.innerHTML = inputCoefficient.innerHTML  + '<p class="equation-static"> X^ ' + degree + ' + </p>' + equation.innerHTML;
+    // }
+
+    // if (degree === 0) {
+    //     equation.innerHTML = inputCoefficient.innerHTML;
+    // } else if (degree === 1) {
+    //     equation.innerHTML = inputCoefficient.innerHTML + '<p class="equation-static"> X + </p>' + equation.innerHTML;
+    // } else {
+    //     equation.innerHTML = inputCoefficient.innerHTML  + '<p class="equation-static"> X^ ' + degree + ' + </p>' + equation.innerHTML;
+    // }
+
+    // equations[degree] = equation.innerHTML
     degree++;
 })
+
+function createInputField(degree){
+    var inputField = document.createElement("INPUT");
+    inputField.setAttribute("type", "text");
+    inputField.setAttribute("value", degree.toString());
+    inputField.setAttribute("class", "equation-coefficient");
+    inputField.setAttribute('id', 'd_' + degree.toString());
+
+    inputField.addEventListener('input', function () {
+        coefficients[degree] = this.value;
+    });
+
+    return inputField;
+}
 
 const decreaseXButton = document.querySelector('#decreaseX');
 decreaseXButton.addEventListener('click', () => {
     let equation = document.querySelector('.equation');
-    // let test = document.querySelector('.d'+degree);
 
-    // console.log(test.className);
-    // console.log("Decerase" + degree);
-    if (degree < 1) {
-        equation.innerHTML = equations[0];
-    } else {
+    let toRemove = document.querySelector('#d_' + (degree-1));
+
+    equation.removeChild(toRemove);
+
+    // if (degree <= 1) {
+    //     equation.innerHTML = equations[0];
+    // } else {
+    //     degree--;
+    //     equation.innerHTML = equations[degree - 1];
+    // }
         degree--;
-        equation.innerHTML = equations[degree];
-    }
 })
+
+const makeChartButton = document.querySelector('#drawChart');
+makeChartButton.addEventListener('click', () => {
+    // let coefficientValues = document.querySelectorAll(".equation-coefficient");
+
+    console.log(coefficients.toString())
+})
+
+function addElements(element, index) {
+    // coefficients[index] = element.target.value;
+    // console.log("Wywoałanie addElememtnts: " + element.target.value);
+
+}
+
+
+// const inputList = document.querySelector('.equation-coefficient');
+// inputList.addEventListener('input', getInputFromTextBox);
+// // inputList.addEventListener('input', saveCoefficient);
+//
+// function saveCoefficient(degree, value) {
+//     coefficients[degree] = value;
+// }
+//
+// function getInputFromTextBox(e) {
+//     // var input = document.getElementById("userInput").value;
+//     alert(e.target.value);
+// }
 
 
 // var answers = 0,
