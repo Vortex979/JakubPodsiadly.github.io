@@ -52,17 +52,24 @@ increaseXButton.addEventListener('click', () => {
         return;
     }
 
+    let staticText = document.createTextNode("X");
+    inputCoefficient.appendChild(staticText);
+
     equation.appendChild(inputCoefficient);
 
-    let static = "";
+    // let staticText = createPlainText(degree);
+
 
     // if (degree === 0) {
-    //     equation.innerHTML = inputCoefficient.innerHTML;
+    //     static = "";
     // } else if (degree === 1) {
-    //     equation.innerHTML = inputCoefficient.innerHTML + '<p class="equation-static"> X + </p>' + equation.innerHTML;
+    //     static = " X + ";
     // } else {
-    //     equation.innerHTML = inputCoefficient.innerHTML  + '<p class="equation-static"> X^ ' + degree + ' + </p>' + equation.innerHTML;
+    //     static = " X + " + degree.toString();
     // }
+
+    // inputCoefficient.appendChild(staticText);
+
 
     // if (degree === 0) {
     //     equation.innerHTML = inputCoefficient.innerHTML;
@@ -76,12 +83,12 @@ increaseXButton.addEventListener('click', () => {
     degree++;
 })
 
-function createInputField(degree){
-    var inputField = document.createElement("INPUT");
+function createInputField(degree) {
+    let inputField = document.createElement("INPUT");
     inputField.setAttribute("type", "text");
     inputField.setAttribute("value", degree.toString());
     inputField.setAttribute("class", "equation-coefficient");
-    inputField.setAttribute('id', 'd_' + degree.toString());
+    inputField.setAttribute('id', 'dc_' + degree.toString());
 
     inputField.addEventListener('input', function () {
         coefficients[degree] = this.value;
@@ -90,13 +97,30 @@ function createInputField(degree){
     return inputField;
 }
 
+function createPlainText(degree) {
+    let plainText = document.createElement("p");
+    // plainText.setAttribute("type", "text");
+    plainText.setAttribute("class", "equation-static");
+    plainText.setAttribute('id', 'dp_' + degree.toString());
+
+    if (degree === 0) {
+        plainText.setAttribute("value", "");
+    } else if (degree === 1) {
+        plainText.setAttribute("value", " X + ");
+    } else {
+        plainText.setAttribute("value", " X + " + degree.toString());
+    }
+
+    return plainText;
+}
+
 const decreaseXButton = document.querySelector('#decreaseX');
 decreaseXButton.addEventListener('click', () => {
     let equation = document.querySelector('.equation');
 
-    let toRemove = document.querySelector('#d_' + (degree-1));
+    equation.removeChild(document.querySelector('#dc_' + (degree - 1)));
 
-    equation.removeChild(toRemove);
+    // equation.removeChild(document.querySelector('#dp_' + (degree - 1)));
 
     // if (degree <= 1) {
     //     equation.innerHTML = equations[0];
@@ -104,7 +128,7 @@ decreaseXButton.addEventListener('click', () => {
     //     degree--;
     //     equation.innerHTML = equations[degree - 1];
     // }
-        degree--;
+    degree--;
 })
 
 const makeChartButton = document.querySelector('#drawChart');
@@ -113,13 +137,6 @@ makeChartButton.addEventListener('click', () => {
 
     console.log(coefficients.toString())
 })
-
-function addElements(element, index) {
-    // coefficients[index] = element.target.value;
-    // console.log("Wywoałanie addElememtnts: " + element.target.value);
-
-}
-
 
 // const inputList = document.querySelector('.equation-coefficient');
 // inputList.addEventListener('input', getInputFromTextBox);
@@ -132,26 +149,4 @@ function addElements(element, index) {
 // function getInputFromTextBox(e) {
 //     // var input = document.getElementById("userInput").value;
 //     alert(e.target.value);
-// }
-
-
-// var answers = 0,
-//     write = document.getElementById('buttons');
-//
-// function addAnswer() {
-//     write.innerHTML += 'Add answer: <input type="text" id="answer"' + answers + '/> <br />';
-//     answers++;
-// }
-
-
-// var i = 0;
-//
-// function addMore()
-// {
-//     var x = document.getElementById('buttons');
-//     var input1 = document.createElement("input");
-//     input1.setAttribute("type","text");
-//     input1.setAttribute("name","i" + i );
-//     x.appendChild( input1 );
-//     i++;
 // }
