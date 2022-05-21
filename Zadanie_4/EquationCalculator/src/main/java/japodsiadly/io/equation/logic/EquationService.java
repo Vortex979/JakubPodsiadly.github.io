@@ -12,18 +12,23 @@ public class EquationService {
     public String createEquation(Equation equation) {
         StringBuilder result = new StringBuilder();
 
-        for (int i = 0; i < equation.getEquation().length; i++) {
+        for (int i = equation.getEquation().length - 1; i >= 0; i--) {
             if (equation.getEquation()[i] == 0) {
                 continue;
             }
-            final String partialResult = "x" + "*x".repeat(Math.max(0, equation.getEquation().length - 1 - i));
-            result.append(equation.getEquation()[i])
-                    .append("*")
-                    .append(partialResult)
-                    .append("+");
-        }
+            if (equation.getEquation()[i] < 0) result.append("-");
+            else result.append("+");
 
-        result.deleteCharAt(result.length() - 1);
+            String partialResult;
+            if (i == equation.getEquation().length - 1)
+                partialResult = "*x".repeat(Math.max(0, equation.getEquation().length - 2 - i));
+            else {
+                partialResult = "x" + "*x".repeat(Math.max(0, equation.getEquation().length - 2 - i));
+                partialResult = "*" + partialResult;
+            }
+            result.append(equation.getEquation()[i]).append(partialResult);
+        }
+        result.deleteCharAt(0);
 
         return result.toString();
     }
