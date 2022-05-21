@@ -37,11 +37,7 @@ navbarToggler.addEventListener('click', () => {
 })
 
 let degree = 0;
-let equations = [];
 let coefficients = [];
-// equations[0] = '<input class="equation-coefficient">';
-// equations[0] = createInputField(0);
-
 
 const increaseXButton = document.querySelector('#increaseX');
 increaseXButton.addEventListener('click', () => {
@@ -51,65 +47,44 @@ increaseXButton.addEventListener('click', () => {
     if (degree >= 9) {
         return;
     }
-
-    let staticText = document.createTextNode("X");
-    inputCoefficient.appendChild(staticText);
-
+    let staticText = createPlainText(degree);
     equation.appendChild(inputCoefficient);
-
-    // let staticText = createPlainText(degree);
-
-
-    // if (degree === 0) {
-    //     static = "";
-    // } else if (degree === 1) {
-    //     static = " X + ";
-    // } else {
-    //     static = " X + " + degree.toString();
-    // }
-
-    // inputCoefficient.appendChild(staticText);
-
-
-    // if (degree === 0) {
-    //     equation.innerHTML = inputCoefficient.innerHTML;
-    // } else if (degree === 1) {
-    //     equation.innerHTML = inputCoefficient.innerHTML + '<p class="equation-static"> X + </p>' + equation.innerHTML;
-    // } else {
-    //     equation.innerHTML = inputCoefficient.innerHTML  + '<p class="equation-static"> X^ ' + degree + ' + </p>' + equation.innerHTML;
-    // }
-
-    // equations[degree] = equation.innerHTML
+    equation.appendChild(staticText);
     degree++;
 })
 
 function createInputField(degree) {
-    let inputField = document.createElement("INPUT");
-    inputField.setAttribute("type", "text");
-    inputField.setAttribute("value", degree.toString());
+    const inputField = document.createElement("INPUT");
+    inputField.setAttribute("type", "number");
+    inputField.setAttribute("value", "0");
     inputField.setAttribute("class", "equation-coefficient");
     inputField.setAttribute('id', 'dc_' + degree.toString());
 
     inputField.addEventListener('input', function () {
         coefficients[degree] = this.value;
+        // console.log(this.value)
     });
 
     return inputField;
 }
 
 function createPlainText(degree) {
-    let plainText = document.createElement("p");
-    // plainText.setAttribute("type", "text");
+    const plainText = document.createElement("p");
+    plainText.setAttribute("type", "text");
     plainText.setAttribute("class", "equation-static");
     plainText.setAttribute('id', 'dp_' + degree.toString());
+    let node;
 
     if (degree === 0) {
-        plainText.setAttribute("value", "");
+        node = document.createTextNode("+");
     } else if (degree === 1) {
-        plainText.setAttribute("value", " X + ");
+        node = document.createTextNode("X +");
+    } else if (degree === 8) {
+        node = document.createTextNode("X^" + degree.toString());
     } else {
-        plainText.setAttribute("value", " X + " + degree.toString());
+        node = document.createTextNode("X^" + degree.toString() + "+ ");
     }
+    plainText.appendChild(node);
 
     return plainText;
 }
@@ -118,35 +93,29 @@ const decreaseXButton = document.querySelector('#decreaseX');
 decreaseXButton.addEventListener('click', () => {
     let equation = document.querySelector('.equation');
 
+    if (degree <= 0)
+        return;
+
     equation.removeChild(document.querySelector('#dc_' + (degree - 1)));
-
-    // equation.removeChild(document.querySelector('#dp_' + (degree - 1)));
-
-    // if (degree <= 1) {
-    //     equation.innerHTML = equations[0];
-    // } else {
-    //     degree--;
-    //     equation.innerHTML = equations[degree - 1];
-    // }
+    equation.removeChild(document.querySelector('#dp_' + (degree - 1)));
     degree--;
 })
 
 const makeChartButton = document.querySelector('#drawChart');
 makeChartButton.addEventListener('click', () => {
-    // let coefficientValues = document.querySelectorAll(".equation-coefficient");
+    let dateToDrawAPlot = [];
 
-    console.log(coefficients.toString())
+    for (let i = 0; i < degree; i++) {
+        if (typeof coefficients[i] === 'undefined') {
+            dateToDrawAPlot[i] = 0;
+        } else {
+            dateToDrawAPlot[i] = coefficients[i];
+        }
+    }
+
+    if (dateToDrawAPlot.length === 0 ){
+        dateToDrawAPlot[0] = 0;
+    }
+
+    console.log(dateToDrawAPlot.toString());
 })
-
-// const inputList = document.querySelector('.equation-coefficient');
-// inputList.addEventListener('input', getInputFromTextBox);
-// // inputList.addEventListener('input', saveCoefficient);
-//
-// function saveCoefficient(degree, value) {
-//     coefficients[degree] = value;
-// }
-//
-// function getInputFromTextBox(e) {
-//     // var input = document.getElementById("userInput").value;
-//     alert(e.target.value);
-// }

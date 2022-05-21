@@ -66,6 +66,11 @@ body {
     margin: 20px;
 }
 
+.equation{
+    justify-content: center;
+    text-align: center;
+}
+
 .equation-static {
     float: left;
     font-size: 30px;
@@ -73,10 +78,10 @@ body {
 
 .equation-coefficient {
     float: left;
-    width: 40px;
+    width: 60px;
     height: 30px;
     padding: 10px;
-    margin: 10px;
+    margin: 5px;
 }
 
 .chartButton {
