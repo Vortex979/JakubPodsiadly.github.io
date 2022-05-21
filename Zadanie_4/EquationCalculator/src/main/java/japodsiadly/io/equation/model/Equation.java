@@ -8,5 +8,4 @@ import lombok.*;
 @NoArgsConstructor
 public class Equation {
     private double[] equation;
-    private double x;
 }
