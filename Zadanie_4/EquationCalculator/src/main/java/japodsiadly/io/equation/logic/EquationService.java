@@ -12,7 +12,7 @@ public class EquationService {
     public String createEquation(Equation equation) {
         StringBuilder result = new StringBuilder();
 
-        for (int i = equation.getEquation().length - 1; i >= 0; i--) {
+        for (int i = 0; i < equation.getEquation().length; i++) {
             if (equation.getEquation()[i] == 0) {
                 continue;
             }
@@ -20,7 +20,7 @@ public class EquationService {
             else result.append("+");
 
             String partialResult;
-            if (i == equation.getEquation().length - 1)
+            if (i == 0)
                 partialResult = "*x".repeat(Math.max(0, equation.getEquation().length - 2 - i));
             else {
                 partialResult = "x" + "*x".repeat(Math.max(0, equation.getEquation().length - 2 - i));
@@ -32,5 +32,4 @@ public class EquationService {
 
         return result.toString();
     }
-
 }

@@ -120,39 +120,51 @@ makeChartButton.addEventListener('click', () => {
     }
 
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:8080/makeplot");
+    xhr.open("POST", "http://localhost:8080/makePlot");
 
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
 
-    xhr.onload = () => console.log(xhr.responseText);
+    // xhr.onload = () => console.log(xhr.responseText);
+    xhr.onload = () => {
+        drawPlot(xhr.responseText);
+    }
 
-    let data = `{
-        "equation": "` + dateToDrawAPlot + `",
-        "Customer": "Jason Sweet",
-        }`;
+    console.log("Date to drow a plot" + dateToDrawAPlot);
+    console.log(dateToDrawAPlot.toString());
 
-    xhr.send(data);
+    let data = {
+        // equation: [4, 3, 2, 1]
+        equation: dateToDrawAPlot
+    };
 
+    let json = JSON.stringify(data);
 
-    // fetch('http://localhost:8080/makeplot')
-    //     .then(response => response.json())
-    //     .then(data => console.log(data));
+    console.log(json);
+    xhr.send(json);
 
 
     // let response = "x*x*x" ;
-    let response = "";
+    // let response = xhr.responseText;
+    // console.log(response);
 
-    drawPlot(response);
+    // drawPlot(response);
 })
 
 function makeEquation(equation, x) {
     equation.replace('x', x);
+    console.log(x.toString() + "=" + eval(equation));
+    // console.log(equation.toString());
+
     return eval(equation);
 }
 
 function drawPlot(response) {
     let plot = document.getElementById("plot");
+    // let newDiv = document.createElement("div");
+    // newDiv.setAttribute('id','plot');
+    // plot = newDiv;
+
     if (null == plot || !plot.getContext) return;
 
     let axes = {}, ctx = plot.getContext("2d");
