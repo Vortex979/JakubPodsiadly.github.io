@@ -9,40 +9,23 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Log
 public class EquationService {
-
-    public double calculateEquation(Equation equation, double x) {
-        double result = 0;
+    public String createEquation(Equation equation) {
+        StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < equation.getEquation().length; i++) {
             if (equation.getEquation()[i] == 0) {
                 continue;
             }
-            double partialResult = 1;
-            for (int j = 0; j < equation.getEquation().length - 1 - i; j++) {
-                partialResult *= x;
-            }
-            result += equation.getEquation()[i] * partialResult;
-//            log.info(equation.getEquation()[i] + " * " + partialResult + " = " + result);
+            final String partialResult = "x" + "*x".repeat(Math.max(0, equation.getEquation().length - 1 - i));
+            result.append(equation.getEquation()[i])
+                    .append("*")
+                    .append(partialResult)
+                    .append("+");
         }
-        return result;
+
+        result.deleteCharAt(result.length() - 1);
+
+        return result.toString();
     }
 
-    public double[] makePlot(Equation equation) {
-        double[] ouputValuesX = new double[2000];
-        double[] inputValuesX = new double[2000];
-
-        //ToDO: Usuń X z equation
-        //ogarnij biblioteki z równaniami
-
-        double x = -100;
-        inputValuesX[0] = x;
-
-        for (int i = 0; i < ouputValuesX.length; i++) {
-            ouputValuesX[i] = calculateEquation(equation, x);
-            x+= 0.1;
-            inputValuesX[i] = x;
-//            log.info("Make plot" + String.valueOf(inputValuesX[i]));
-        }
-        return ouputValuesX;
-    }
 }

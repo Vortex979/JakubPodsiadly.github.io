@@ -11,13 +11,8 @@ import org.springframework.web.bind.annotation.*;
 class IntegralController {
     private final EquationService equationService;
 
-//    @GetMapping("/equationSolver")
-//    ResponseEntity<?> solveEquation(@RequestBody Equation equation){
-//        return ResponseEntity.ok(equationService.calculateEquation(equation));
-//    }
-
     @GetMapping("/makePlot")
     ResponseEntity<?> makePlot(@RequestBody Equation equation){
-        return ResponseEntity.ok(equationService.makePlot(equation));
+        return ResponseEntity.ok(equationService.createEquation(equation));
     }
 }
