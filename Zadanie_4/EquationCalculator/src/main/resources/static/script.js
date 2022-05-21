@@ -26,7 +26,6 @@ const app = {
 document.addEventListener('DOMContentLoaded', app.init);
 
 const navbarToggler = document.querySelector('#tooglebutton');
-const navbarMenu = document.querySelector('#menu');
 navbarToggler.addEventListener('click', () => {
     let toToggle = document.querySelector('#menu')
 
@@ -75,6 +74,9 @@ function createPlainText(degree) {
     plainText.setAttribute('id', 'dp_' + degree.toString());
     let node;
 
+    //TODO: ogarnij plusy dobrze
+    //TODO: ogarnąć wpisywanie liczb do okinenek
+
     if (degree === 0) {
         node = document.createTextNode("+");
     } else if (degree === 1) {
@@ -113,9 +115,84 @@ makeChartButton.addEventListener('click', () => {
         }
     }
 
-    if (dateToDrawAPlot.length === 0 ){
+    if (dateToDrawAPlot.length === 0) {
         dateToDrawAPlot[0] = 0;
     }
 
-    console.log(dateToDrawAPlot.toString());
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:8080/makeplot");
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.onload = () => console.log(xhr.responseText);
+
+    let data = `{
+        "equation": "` + dateToDrawAPlot + `",
+        "Customer": "Jason Sweet",
+        }`;
+
+    xhr.send(data);
+
+
+    // fetch('http://localhost:8080/makeplot')
+    //     .then(response => response.json())
+    //     .then(data => console.log(data));
+
+
+    // let response = "x*x*x" ;
+    let response = "";
+
+    drawPlot(response);
 })
+
+function makeEquation(equation, x) {
+    equation.replace('x', x);
+    return eval(equation);
+}
+
+function drawPlot(response) {
+    let plot = document.getElementById("plot");
+    if (null == plot || !plot.getContext) return;
+
+    let axes = {}, ctx = plot.getContext("2d");
+    axes.x0 = .5 + .5 * plot.width;  // x0 pixels from left to x=0
+    axes.y0 = .5 + .5 * plot.height; // y0 pixels from top to y=0
+    axes.scale = 40;                 // 40 pixels from x=0 to x=1
+    axes.doNegativeX = true;
+
+    showAxes(ctx, axes);
+    funGraph(ctx, axes, response, "rgb(11,153,11)", 1);
+}
+
+function funGraph(ctx, axes, equation, color, thick) {
+    let xx, yy, dx = 4, x0 = axes.x0, y0 = axes.y0, scale = axes.scale;
+    let iMax = Math.round((ctx.canvas.width - x0) / dx);
+    let iMin = axes.doNegativeX ? Math.round(-x0 / dx) : 0;
+    ctx.beginPath();
+    ctx.lineWidth = thick;
+    ctx.strokeStyle = color;
+
+    for (var i = iMin; i <= iMax; i++) {
+        xx = dx * i;
+        // yy = scale * func(xx / scale);
+        yy = scale * makeEquation(equation, xx / scale);
+        if (i === iMin) ctx.moveTo(x0 + xx, y0 - yy);
+        else ctx.lineTo(x0 + xx, y0 - yy);
+    }
+    ctx.stroke();
+}
+
+function showAxes(ctx, axes) {
+    let x0 = axes.x0, w = ctx.canvas.width;
+    let y0 = axes.y0, h = ctx.canvas.height;
+    let xmin = axes.doNegativeX ? 0 : x0;
+    ctx.beginPath();
+    ctx.strokeStyle = "rgb(128,128,128)";
+    ctx.moveTo(xmin, y0);
+    ctx.lineTo(w, y0);  // X axis
+    ctx.moveTo(x0, 0);
+    ctx.lineTo(x0, h);  // Y axis
+    ctx.stroke();
+}
+
