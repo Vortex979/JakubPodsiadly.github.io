@@ -20,8 +20,8 @@ public class EquationService {
             else result.append("+");
 
             String partialResult;
-            if (i == 0)
-                partialResult = "*x".repeat(Math.max(0, equation.getEquation().length - 2 - i));
+            if (i == equation.getEquation().length - 1)
+                partialResult = "";
             else {
                 partialResult = "x" + "*x".repeat(Math.max(0, equation.getEquation().length - 2 - i));
                 partialResult = "*" + partialResult;

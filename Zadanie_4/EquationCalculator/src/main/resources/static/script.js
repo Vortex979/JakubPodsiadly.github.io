@@ -58,10 +58,10 @@ function createInputField(degree) {
     inputField.setAttribute("value", "0");
     inputField.setAttribute("class", "equation-coefficient");
     inputField.setAttribute('id', 'dc_' + degree.toString());
+    inputField.setAttribute('min', "0"); // TODO: przerobić aby jednak akceptowało liczby ujemne
 
     inputField.addEventListener('input', function () {
         coefficients[degree] = this.value;
-        // console.log(this.value)
     });
 
     return inputField;
@@ -115,57 +115,34 @@ makeChartButton.addEventListener('click', () => {
         }
     }
 
-    if (dateToDrawAPlot.length === 0) {
-        dateToDrawAPlot[0] = 0;
-    }
-
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost:8080/makePlot");
-
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
 
-    // xhr.onload = () => console.log(xhr.responseText);
     xhr.onload = () => {
         drawPlot(xhr.responseText);
     }
 
-    console.log("Date to drow a plot" + dateToDrawAPlot);
-    console.log(dateToDrawAPlot.toString());
-
+    dateToDrawAPlot = dateToDrawAPlot.reverse();
     let data = {
-        // equation: [4, 3, 2, 1]
         equation: dateToDrawAPlot
     };
-
     let json = JSON.stringify(data);
-
-    console.log(json);
     xhr.send(json);
-
-
-    // let response = "x*x*x" ;
-    // let response = xhr.responseText;
-    // console.log(response);
-
-    // drawPlot(response);
 })
 
 function makeEquation(equation, x) {
     equation.replace('x', x);
-    console.log(x.toString() + "=" + eval(equation));
-    // console.log(equation.toString());
-
     return eval(equation);
 }
 
 function drawPlot(response) {
     let plot = document.getElementById("plot");
-    // let newDiv = document.createElement("div");
-    // newDiv.setAttribute('id','plot');
-    // plot = newDiv;
+    const context = plot.getContext('2d');
+    context.clearRect(0, 0, plot.width, plot.height);
 
-    if (null == plot || !plot.getContext) return;
+    if (!plot.getContext) return;
 
     let axes = {}, ctx = plot.getContext("2d");
     axes.x0 = .5 + .5 * plot.width;  // x0 pixels from left to x=0
@@ -185,7 +162,7 @@ function funGraph(ctx, axes, equation, color, thick) {
     ctx.lineWidth = thick;
     ctx.strokeStyle = color;
 
-    for (var i = iMin; i <= iMax; i++) {
+    for (let i = iMin; i <= iMax; i++) {
         xx = dx * i;
         // yy = scale * func(xx / scale);
         yy = scale * makeEquation(equation, xx / scale);
