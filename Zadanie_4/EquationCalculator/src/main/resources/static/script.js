@@ -55,7 +55,13 @@ increaseXButton.addEventListener('click', () => {
 function createInputField(degree) {
     const inputField = document.createElement("INPUT");
     inputField.setAttribute("type", "number");
-    inputField.setAttribute("value", "0");
+
+    if (coefficients[degree] !== null) {
+        inputField.setAttribute("value", coefficients[degree]);
+    } else {
+        inputField.setAttribute("value", "0");
+    }
+
     inputField.setAttribute("class", "equation-coefficient");
     inputField.setAttribute('id', 'dc_' + degree.toString());
     inputField.setAttribute('min', "0"); // TODO: przerobić aby jednak akceptowało liczby ujemne
@@ -107,12 +113,23 @@ const makeChartButton = document.querySelector('#drawChart');
 makeChartButton.addEventListener('click', () => {
     let dateToDrawAPlot = [];
 
+    document.getElementById("allZeroError").innerText = "";
+
     for (let i = 0; i < degree; i++) {
         if (typeof coefficients[i] === 'undefined') {
             dateToDrawAPlot[i] = 0;
         } else {
             dateToDrawAPlot[i] = coefficients[i];
         }
+    }
+
+    console.log(dateToDrawAPlot.toString());
+
+    const isAllZero = dateToDrawAPlot.every(item => item === 0);
+
+    if (dateToDrawAPlot.length === 0 || isAllZero) { //TODO: inaczej rozwiązać te exceptiony
+        document.getElementById("allZeroError").innerText = "Z Podanych wartości nie można narysować wykresu!!";
+        return;
     }
 
     let xhr = new XMLHttpRequest();
@@ -129,6 +146,7 @@ makeChartButton.addEventListener('click', () => {
         equation: dateToDrawAPlot
     };
     let json = JSON.stringify(data);
+
     xhr.send(json);
 })
 
